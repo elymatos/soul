@@ -1,0 +1,337 @@
+# **Conceptual Space**
+
+All concepts are situated in a **CONCEPTUAL_SPACE**. The **CONCEPTUAL_SPACE** encompasses all types of spaces (for example, physical space, topological space, temporal space, etc.). Concepts are represented by a **REGION** in the **CONCEPTUAL_SPACE**. **REGION**s can be conceptualized as:
+
+- 0D: **POINT**
+    
+- 1D: **CURVE**: formed by 2 **POINT**s
+    
+- 2D: **AREA**: formed by 2 or more **CURVE**s
+    
+- 3D: **OBJECT**: formed by 2 or more **AREA**s
+    
+
+In terms of **TEMPORAL_SPACE**, we have:
+
+- **POINT** corresponds to **TIME_INSTANT**
+    
+- **CURVE** corresponds to **TIME_INTERVAL**
+    
+
+In terms of **EVENT_SPACE**, we have:
+
+- **POINT** corresponds to **EVENT** (a punctual event)
+    
+- **CURVE** corresponds to **PROCESS** (an event that has duration)
+    
+
+**PHYSICAL_SPACE** is conceptualized as an **OBJECT**. **TEMPORAL_SPACE** is characterized as a **CURVE**.
+
+# **Fundamental Concepts**
+
+Some fundamental concepts in the SOUL framework:
+
+- **ENTITY**: corresponds directly to a **REGION**
+    
+- **RELATION**: an association between two **ENTITY**ies (one **ENTITY** is the **FIGURE**, the other is the **GROUND**)
+    
+- **STATE**: a type of **RELATION** that associates an **ENTITY** with a condition (or "state of affairs")
+    
+- **OPERATION**: a type of **RELATION** that represents an action on a concept.
+    
+- **EVENT**: a type of **RELATION** that represents an occurrence (eventuality) associated with one or more concepts.
+    
+- **FORCE**: an influence exercised over a concept.
+    
+
+# **Structural Schemas**
+
+## **CLASS**
+
+A **CLASS** groups concepts that share common **RELATION**s. A **CLASS** can also be conceptualized as a **SET** or a **CATEGORY**. The concepts in a **CLASS** are unique (there is no duplication of concepts within a **CLASS**), but the same concept can be associated with more than one **CLASS**. A concept's participation in a **CLASS** is represented by the **IS_MEMBER_OF** relationship.
+
+## **AXIS**
+
+This schema is similar to **CLASS** in the sense that it represents a grouping of concepts. The difference is that the concepts are aligned on an "axis," with criteria or rules (**constraints**) defined for the positioning of the concept on the axis, characterizing some kind of **ORDER**. A **DIMENSION** of a **CONCEPTUAL_SPACE** will always be associated with the **AXIS** schema. This indicates that concepts sharing a **DIMENSION** are related according to some criterion on the same **AXIS**. In this framework, 3 basic types of **AXIS** are defined. For each axis, an "origin" (or "reference point") is defined, associated with the central region of the axis (**CENTER**):
+
+- **AXIS-X**: conceptualizes a "horizontal" axis, grouping concepts of the same nature (that are at the same level of abstraction). These concepts can be placed in a relationship of opposition (concept-A **OPPOSITE** concept-B). Opposing concepts are placed on opposite sides relative to the **CENTER** of the **AXIS**. The distance of the concepts from the **CENTER** indicates how closely the concepts are related to each other.
+    
+- **AXIS-Y**: conceptualizes a "vertical" axis. As in **AXIS-X**, opposing concepts are placed on opposite sides relative to the **CENTER** ("negative" **BELOW**, "positive" **ABOVE**). Concepts on this axis would be associated with the notion of **QUALITY** (in the sense of value judgment), and are common in the interpretation of some metaphors.
+    
+- **AXIS-Z**: conceptualizes a "transversal" axis, that is, one that "traverses" the conceptualizer (located at the **CENTER**). Concepts on this axis would be associated with the notion of _accessibility_, where **IN_FRONT_OF** would be what is accessible, perceptible, or reachable by the observer; **BEHIND**, the opposite. Thus, this axis serves as the basis for the conceptualization of the concept of **time** (**TIME**), considering the **FUTURE** in the **IN_FRONT_OF**, the **PRESENT** in the **CENTER**, and the **PAST** in the **BEHIND**.
+    
+
+The **AXIS** schema also serves as the basis for the important **SCALE** schema. A **SCALE** is used for the conceptualization of concepts that are **MEASURABLE** according to some criterion, associated with the idea of **QUANTITY** ("much," "little," etc.), and also provides the foundation for the **COMPARISON** relationship between concepts ("more," "less," etc.).
+
+## **GENSPEC**
+
+This represents some type of hierarchy. A hierarchy can be conceptualized as the allocation of classes on a vertical axis, according to some criterion. The **GENSPEC** (generalization/specialization) structure is associated with the extraction of more generic characteristics from a class of concepts. It is the schema used in taxonomies (**IS-A** relation) and inheritance networks (**INHERITS_FROM** relation). More general concepts, or those with a higher level of abstraction, would be "above" more specific, or more concrete, concepts.
+
+## **PART-WHOLE**
+
+This schema represents part-whole relations between concepts. One concept is the **PART** and another concept is the **WHOLE**.
+
+- **PARTHOOD**: indicates that the **PART** is included in the **WHOLE** but both are concepts with distinct existences.
+    
+- **COMPOSITION**: indicates that the **PART** is included in the **WHOLE** but that the definition (or conceptualization) of the **WHOLE** necessarily implies or presupposes the existence of the **PART**.
+    
+- **PIECE_WHOLE**: the **PART** is of the same nature as the **WHOLE**.
+    
+
+# **Entities**
+
+Entities:
+
+- **ABSTRACT_ENTITY**
+    
+- **PHYSICAL_ENTITY**
+    
+- **SOCIAL_ENTITY**
+    
+- **REPRESENTATION**
+    
+
+# **Relations**
+
+There is a long list of relations that must be considered in the processes of conceptualization. In the section on Schemas, we presented the structural relations of each schema. Some topological relations can also be considered:
+
+- **MEET(X,Y)**: Indicates that the concepts have points in common.
+    
+- **OVERLAP(X,Y)**: indicates that concept X overlaps in several points with concept Y.
+    
+- **CONTAINS(X,Y)**: indicates that concept X contains the points of concept Y.
+    
+- **EQUAL(X,Y)**: indicates that concepts X and Y can be considered equivalent in a given context.
+    
+- **SIMILAR(X,Y)**: indicates that concepts X and Y are similar in a given context.
+    
+
+# **Operations**
+
+**OPERATION**s represent the dynamic part of the SOUL framework. **OPERATION**s move concepts in the **CONCEPTUAL_SPACE**, alter characteristics of the concepts, or change the way a given concept is currently being conceptualized.
+
+## **Zoom Operations**
+
+As seen, concepts (represented by **REGION**) can be conceptualized as a **POINT**, **CURVE**, **AREA**, or **OBJECT**. Zoom operations dynamically change the conceptualization of a concept:
+
+- **ZOOM_IN**: operates in the direction **POINT** -> **CURVE** -> **AREA** -> **OBJECT**
+    
+- **ZOOM_OUT**: operates in the direction **OBJECT** -> **AREA** -> **CURVE** -> **POINT** Note that these operations increase or decrease the level of detail about the concept.
+    
+
+## **Spatial Operations**
+
+We are working with **CONCEPTUAL_SPACE**s. Spatial operations situate a concept within a **CONCEPTUAL_SPACE**, using the schemas presented earlier as a **BASE**.
+
+### **Positioning Operations**
+
+As seen, a **DIMENSION** is associated with the **AXIS** schema, indicating that concepts are related according to some criterion. The **DISTANCE** between concepts shows how similar they are to each other, according to the defined criterion. To avoid greater complexity, spatial operations are defined using an analogy with physical space. Furthermore, as in ISL, a naive egocentric view is assumed, with a fixed observer at an "origin" or "reference point" (prototypically the central position of the axis). These operations are understood in two ways: as a "get" operation, in which a value is obtained, or as a "set" operation, in which a value is defined:
+
+- **AT(X,Y)** positions concept X at position Y; **AT(X)** returns the concept that is at position X.
+    
+- **ABOVE(X)** positions concept X above the **CENTER** (on an **AXIS-Y**)
+    
+- **BELOW(X)** positions concept X below the **CENTER** (on an **AXIS-Y**)
+    
+- **BEHIND(X)** positions concept X behind the **CENTER** (on an **AXIS-Z**)
+    
+- **IN_FRONT_OF(X)** positions concept X in front of the **CENTER** (on an **AXIS-Z**) These operations are performed within the context of a **REGION** or structural schema. For example, if T is a **TIME_AXIS**, the operation T.**IN_FRONT_OF(X)** is positioning X in the future relative to the origin and returning the position where X was placed. If we have T.**IN_FRONT_OF(X)**.**IN_FRONT_OF(Y)**, concept Y is being placed in the future relative to concept X.
+    
+
+### **Movement Operations**
+
+These operations represent the "displacement" from one conceptualization to another:
+
+- **IN**: Positions a concept "inside" another, conceptualized as a **REGION**. Associated with the **CONTAINS**/**INSIDE** relation.
+    
+- **OUT**: Positions a concept "outside" another, conceptualized as a **REGION**. Associated with the **CONTAINS**/**OUTSIDE** relation.
+    
+- **FROM**: Characterizes that a concept "moves away" from another. The specific interpretation depends on the context/domain.
+    
+- **TO**: Characterizes that a concept "moves towards" another. The specific interpretation depends on the context/domain.
+    
+- **UP**: A concept is moved "up" in the context of an **AXIS-Y**.
+    
+- **DOWN**: A concept is moved "down" in the context of an **AXIS-Y**.
+    
+
+# **Events**
+
+An **EVENT** is an occurrence caused by the influence of a **FORCE**. This **FORCE** can be an **AGENT** or a **CAUSE**. A **PROCESS** represents a series of **EVENT**s, which has a **START**, a **DURATION**, and an **END**, and can be **STOP**ped, **RESTART**ed, or **CANCEL**led. The events of a process can occur in a **SEQUENCE** or in a **CYCLE**. Some generic types of events:
+
+- **CAUSATION**: events characterized by a **CAUSE**, without an **AGENT**.
+    
+- **ACTION**: events characterized by an **AGENT**.
+    
+- **MOTION**: events characterized by a **MOVEMENT**.
+    
+- **TRANSITION**: events characterized by a **CHANGE** of **STATE**.
+    
+- **TRANSFER**: **CHANGE** of **POSSESSION**.
+    
+- **PHENOMENON**: events without a profiled **CAUSE** or **AGENT**.
+    
+- **UNDERGOING**: events characterized by the **EFFECT**.
+    
+
+# **States**
+
+A **STATE** represents a stable **RELATION** between two concepts, that is, a **RELATION** that does not have the tendency to change quickly with the passage of time. In general, for the current **STATE** to change, some **EVENT** must occur (that is, some **FORCE** must occur to change the current **STATE**). The **RELATION**s of an **ENTITY** with its **STATE**s (understood as the "state of the entity") are used to characterize the entity. Some states:
+
+- **LOCATION(X,Y)**: A state that describes the position of an **ENTITY** X in relation to a reference Y (represented by one or more entities).
+    
+- **SPATIAL_LOCATION**: A state that describes the location of an entity in space, or the spatial relation between two entities.
+    
+- **TEMPORAL_LOCATION**: A state that describes the temporal location of an event, or the temporal relation between two events.
+    
+- **ROLE(X,Y)**: A state that describes the relation between an **ENTITY** X and a **ROLE** Y (usually a social role) exercised or attributed to the entity.
+    
+- **QUALITY_DIMENSION**: A **QUALITY** defines an "inherent" state (or characteristic) of an entity. A **QUALITY_DIMENSION** is the way in which a certain **QUALITY** of an entity is conceptualized on an **AXIS**.
+    
+- **QUALITY_VALUE**: A **QUALITY_VALUE** is a region defined within a **QUALITY_DIMENSION**.
+    
+- **ATRIBUTE_VALUE(X,A,V)**: **ENTITY** X has **VALUE** V for **ATTRIBUTE** A.
+    
+- **POSESSION(X,Y)**: A state that describes the relation between two **ENTITY**s (X and Y) in which one can be conceptualized as being the possession or property of the other. This **RELATION** is static and does not involve any **TRANSFER**, and can be persistent or temporary.
+    
+- **CONFIGURATION(X,Y)**: A state in which the **RELATION** between two (or more) entities that, together, form a new concept is profiled. Generally associated with the configuration of an atomic entity in relation to a compound entity.
+    
+- **PLEXITY**: Configuration related to the condition of the entity being composed of a certain number of elements (**uniplex**, **duplex**, **multiplex**).
+    
+- **BOUNDNESS**: Configuration related to the condition of the entity being delimited in some way.
+    
+- **DIVIDENESS**: Configuration related to the condition of the entity being conceptualized in a discrete or continuous way.
+    
+
+# **Image Schemas**
+
+All concepts presented here can be considered as **Image Schemas**, in the context of the SOUL framework:
+
+- **CONTACT(X,Y)**: associated with the relation **MEET(X,Y)**.
+    
+- **LINK(X,Y)**: A generic association between concepts X and Y. Can be specified by one of the structural relations.
+    
+- **CYCLE(X)**: Represents that **EVENT** X occurs repeatedly. Other schemas:
+    
+- **SOURCE-PATH-GOAL**: a combination of two **REGION**s (**SOURCE** and **GOAL**) and a **CURVE**. **SOURCE** is associated with **START** and **ORIGIN**, **GOAL** is associated with **END** and **DESTINATION**.
+    
+- **CONTAINER**: an **OBJECT** that combines 4 **REGION**s: **EXTERIOR**, **INTERIOR**, **PORTAL**, and **BOUNDARY**. Each of these **REGION**s has its own definition.
+    
+
+# **Commonsense Psychology (CSP) Primitives**
+
+**CSP** also defines some concepts as primitives. Some have already been included earlier. The following are only those that have not yet been cited:
+
+- **PERSON**: a specific type of **AGENT**.
+    
+- **BODY**: a specific type of **PHYSICAL_OBJECT**, representing a person's body.
+    
+- **MIND**: a central **ENTITY** for **CSP**, representing the mind of a **PERSON**.
+    
+- **EMOTION**: a phenomenologically experienced feeling.
+    
+
+# **General Structure of Domains**
+
+The general structure for representing the various scenarios in a domain is: _The occurrence of **FORCE**s generates **EVENT**s or **PROCESS**es that cause **CHANGE**s in the **STATE**s of **ENTITY**ies._
+
+### Step 3: List of Concepts with Brief Definitions
+
+Here is a list of the concepts presented in the text with a brief definition:
+
+**Fundamental Concepts:**
+
+- **CONCEPTUAL_SPACE**: The encompassing space where all concepts are situated.
+    
+- **REGION**: A representation of a concept within the **CONCEPTUAL_SPACE**. Can be a **POINT**, **CURVE**, **AREA**, or **OBJECT**.
+    
+- **ENTITY**: A fundamental concept that corresponds directly to a **REGION**.
+    
+- **RELATION**: An association between two **ENTITY**ies.
+    
+- **STATE**: A stable type of **RELATION** that describes a condition of an **ENTITY**.
+    
+- **OPERATION**: A dynamic type of **RELATION** that represents an action on a concept.
+    
+- **EVENT**: A type of **RELATION** that represents an occurrence.
+    
+- **FORCE**: An influence that can cause an **EVENT** or **CHANGE**.
+    
+
+**Spatial and Temporal Concepts:**
+
+- **POINT**: A 0D **REGION**. Can represent a **TIME_INSTANT** or a punctual **EVENT**.
+    
+- **CURVE**: A 1D **REGION**. Can represent a **TIME_INTERVAL** or a **PROCESS**.
+    
+- **AREA**: A 2D **REGION**.
+    
+- **OBJECT**: A 3D **REGION**.
+    
+- **PHYSICAL_SPACE**: A **CONCEPTUAL_SPACE** conceptualized as an **OBJECT**.
+    
+- **TEMPORAL_SPACE**: A **CONCEPTUAL_SPACE** conceptualized as a **CURVE**.
+    
+- **TIME_INSTANT**: A **POINT** in **TEMPORAL_SPACE**.
+    
+- **TIME_INTERVAL**: A **CURVE** in **TEMPORAL_SPACE**.
+    
+- **EVENT_SPACE**: A conceptual space for occurrences.
+    
+
+**Structural Schemas and Relations:**
+
+- **CLASS**: A schema that groups concepts with common **RELATION**s.
+    
+- **AXIS**: A schema that aligns concepts on a line, establishing **ORDER**.
+    
+- **AXIS-X**: A horizontal axis for concepts of the same nature, often representing opposition.
+    
+- **AXIS-Y**: A vertical axis for concepts, often associated with **QUALITY** and value judgment.
+    
+- **AXIS-Z**: A transversal axis for concepts, often associated with accessibility and the conceptualization of **TIME**.
+    
+- **CENTER**: The central reference point on an **AXIS**.
+    
+- **SCALE**: A schema based on **AXIS** for concepts that are **MEASURABLE**.
+    
+- **GENSPEC**: A schema for representing hierarchical relationships (generalization/specialization).
+    
+- **PART-WHOLE**: A schema for representing merological relations (a **PART** and a **WHOLE**).
+    
+
+**Dynamic Concepts:**
+
+- **PROCESS**: An event with duration, represented by a **CURVE**.
+    
+- **ACTION**: An **EVENT** with a profiled **AGENT**.
+    
+- **MOTION**: An **EVENT** with a profiled **MOVEMENT**.
+    
+- **TRANSITION**: An **EVENT** that represents a **CHANGE** of **STATE**.
+    
+- **CHANGE**: A modification of a **STATE** of an **ENTITY**.
+    
+- **OPERATION**: Actions that manipulate concepts in the **CONCEPTUAL_SPACE**, like moving or zooming.
+    
+- **ZOOM_IN**: An **OPERATION** that increases the level of detail of a concept.
+    
+- **ZOOM_OUT**: An **OPERATION** that decreases the level of detail of a concept.
+    
+
+**Image Schemas and Primitives:**
+
+- **SOURCE-PATH-GOAL**: A schema combining a starting **REGION** (**SOURCE**), a path (**CURVE**), and an ending **REGION** (**GOAL**).
+    
+- **CONTAINER**: An **OBJECT** schema with defined **INTERIOR**, **EXTERIOR**, **PORTAL**, and **BOUNDARY**.
+    
+- **PERSON**: A specific type of **AGENT** in **CSP**.
+    
+- **MIND**: A central **ENTITY** in **CSP**, representing a person's mental space.
+    
+- **EMOTION**: A phenomenologically experienced feeling.
+    
+- **BODY**: A specific type of **PHYSICAL_ENTITY** representing a person's body.
+    
+
+![profile picture](https://lh3.googleusercontent.com/a/ACg8ocKPi7J4efsqZ09ENUKmyoysDcyWTtbR1xheGksGpJaua38L2aos=s64-c)
