@@ -196,11 +196,11 @@ A ideia básica é que o processo de conceptualização é realizado através de
 ## Operações sobre entidades
 Em dado contexto (cena, situação, experiência) uma entidade pode ser conceptualizada como um POINT, CURVE, REGION ou OBJECT. 
 
-| Operação | Definição |
-| - | -- |
-| ZOOM-IN | opera no sentido POINT -> OBJECT, obtendo mais detalhes da entidade | 
-| ZOOM-OUT | opera no sentido OBJECT -> POINT, reduzindo os detalhes da entidade | 	
-| SPECIFICATION | define como a entidade será referenciada em dado contexto. Em termos linguísticos, por exemplo, podem ser usados artigos e pronomes|
+| Operação      | Definição                                                                                                                           |     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --- |
+| ZOOM-IN       | opera no sentido POINT -> OBJECT, obtendo mais detalhes da entidade                                                                 |     |
+| ZOOM-OUT      | opera no sentido OBJECT -> POINT, reduzindo os detalhes da entidade                                                                 |     |
+| SPECIFICATION | define como a entidade será referenciada em dado contexto. Em termos linguísticos, por exemplo, podem ser usados artigos e pronomes |     |
 
 ## Operações espaciais
 A ideia de *espaço* é usada neste trabalho não no sentido físico (tridimensional), mas no sentido de *espaço conceptual* (conceptual spaces [^gardenfors_2000]). As noções de *dimensão*, *distância* e *região* devem ser compreendidas no sentido topológico.
@@ -209,13 +209,13 @@ Para evitar maior complexidade, as operações espaciais são definidas usando u
 
 ### Uma dimensão
 
-| Operation | Definition |
-| -- | -- |
-| AT | posiciona o concept em um ponto do AXIS |
-| ABOVE | posiciona o concept em um ponto acima da origem |
-| BELOW | posiciona o concept em um ponto abaixo da origem |
-| BEHIND | posiciona o concept "atrás" da origem |
-| IN-FRONT-OF|  poisiciona o concept "à frente" da origem|
+| Operation   | Definition                                       |
+| ----------- | ------------------------------------------------ |
+| AT          | posiciona o concept em um ponto do AXIS          |
+| ABOVE       | posiciona o concept em um ponto acima da origem  |
+| BELOW       | posiciona o concept em um ponto abaixo da origem |
+| BEHIND      | posiciona o concept "atrás" da origem            |
+| IN-FRONT-OF | poisiciona o concept "à frente" da origem        |
 
 
 | Operation | Definition |
@@ -234,27 +234,27 @@ Exemplos:
 ### Movement operations
 * Operações que representam o "deslocamento" de uma conceptualização para outra. Caracterizam o aspecto dinâmico da conceptualização.
 
-| Operation | Definition |
-|--|--|
-| IN | Posiciona um conceito "dentro" de outro, conceptualizado como uma REGION. Associado à relação CONTAINS/INSIDE |
-| OUT | Posiciona um conceito "fora" de outro, conceptualizado como uma REGION. Associado à relação CONTAINS/OUTSIDE |
-| FROM | Caracteriza que um conceito "se afasta" de outro. A interpretação específica depende do contexto/domínio |
-| TO | Caracteriza que um conceito "se aproxima" de outro. A interpretação específica depende do contexto/domínio |
+| Operation | Definition                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------- |
+| IN        | Posiciona um conceito "dentro" de outro, conceptualizado como uma REGION. Associado à relação CONTAINS/INSIDE |
+| OUT       | Posiciona um conceito "fora" de outro, conceptualizado como uma REGION. Associado à relação CONTAINS/OUTSIDE  |
+| FROM      | Caracteriza que um conceito "se afasta" de outro. A interpretação específica depende do contexto/domínio      |
+| TO        | Caracteriza que um conceito "se aproxima" de outro. A interpretação específica depende do contexto/domínio    |
 
 
 ## Operações topológicas
 
-| Relation | Definition |
-| -- | -- | 
-| DISJOINT | sem interseção; os conceitos não possuem nada em comum.|
-| MEET | conceitos se tocam na superfície, ou seja, têm alguns pontos em comum. |
-| OVERLAP | conceitos se sobrepõe em vários pontos. |
-| CONTAINS | um conceito engloba outro. |
-| EQUAL | um conceito se iguala a outro. |
-| INSIDE/OUTSIDE | ? |
-| COVER/COVEREDBY| ? |
-| PROXIMITY/SIMILARITY | "distância" entre os concepts |
-| ALIGNMENT | alinhamento dos concepts segundo alguns critérios |
+| Relation             | Definition                                                             |
+| -------------------- | ---------------------------------------------------------------------- |
+| DISJOINT             | sem interseção; os conceitos não possuem nada em comum.                |
+| MEET                 | conceitos se tocam na superfície, ou seja, têm alguns pontos em comum. |
+| OVERLAP              | conceitos se sobrepõe em vários pontos.                                |
+| CONTAINS             | um conceito engloba outro.                                             |
+| EQUAL                | um conceito se iguala a outro.                                         |
+| INSIDE/OUTSIDE       | ?                                                                      |
+| COVER/COVEREDBY      | ?                                                                      |
+| PROXIMITY/SIMILARITY | "distância" entre os concepts                                          |
+| ALIGNMENT            | alinhamento dos concepts segundo alguns critérios                      |
 # Estrutura geral dos domínios
  
 A estrutura geral para representar os diversos cenários em um domínio é:
