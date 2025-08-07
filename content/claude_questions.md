@@ -10,3 +10,4 @@
 - Persistence Strategy: At first, frame definition will be kept in the code and Neo4j will be used to transient instances, during a processing phase.
 - Bootstrap: when the system starts, just the Mind service will be started. This service is responsible to the communication with "external" world (for input/output) and for service some agents requests (for example, to query for instantiated frame or to instantiate a frame when necessary).
 
+

@@ -299,3 +299,380 @@ This is a powerful mechanism for making abstract `DISTANCE` perceptible and mean
     
 
 This approach resolves the need for a formal metric by embracing the cognitive nature of "quantity." The "measurement" is a cognitive act of comparison, ordering, and mapping, rather than a mathematical calculation. `DISTANCE` is not a property of the space itself, but a property of the conceptual relations established _between_ `REGION`s, made meaningful through the interplay of image schemas and conceptual blending.
+
+# "Society of mind" previous experiments and direction for SOUL framework
+
+That's an excellent and crucial step. Minsky's "Society of Mind" and "Frames" theories are foundational, and understanding their computational implementations—or lack thereof—is key to building a robust framework like SOUL. By studying existing projects, we can avoid common pitfalls and leverage proven concepts without getting bogged down in the complexity that often accompanied earlier attempts.
+
+My research has identified a few key projects and academic directions that have attempted to implement "Society of Mind" and related concepts. Here is a summary of my findings, focusing on what they do well, their limitations, and the lessons we can apply to the SOUL framework, particularly with our unique focus on Cognitive Linguistics.
+
+### Research Summary: Computational Implementations of Minsky's "Society of Mind"
+
+My investigation has revealed that there is no single, widely adopted "Society of Mind" programming language or framework. Instead, the core ideas have been influential in a variety of research projects, often in a more limited, application-specific way. The most notable implementations and theoretical work can be categorized as follows:
+
+1. **AI Research & Robotics:** Minsky's ideas have been particularly influential in robotics and multi-agent systems. Projects like the **OpenCog** framework and some of the work at the **MIT Media Lab** (where Minsky's influence was strong) have explored the idea of distributed, competing "agents" for specific tasks like vision or motor control. The goal is often to create a system where different parts of the AI specialize in different functions, and a higher-level system coordinates their "votes" or outputs.
+    
+2. **Conceptual Blending & Metaphor:** Some of the most direct computational work related to Minsky's ideas comes from researchers building on **Fauconnier and Turner's Conceptual Blending theory**, which is a central part of our project. Maria Hedblom's work, which you have referenced, is a prime example. Her research, often in collaboration with Oliver Kutz and others, uses computational logic to model how image schemas and their combinations can lead to the invention of new concepts, which aligns closely with the creative processes Minsky's theory was meant to explain. This work often employs formal logic and graph-based representations to model the mental spaces and the projection between them.
+    
+3. **Frame-Based Systems:** The concept of "frames" has had a lasting impact. Frame-based systems are common in knowledge representation and are often implemented as data structures or ontologies. **WordNet** and **Cyc** are two well-known examples, although they don't fully embrace the "Society of Mind" dynamic agent architecture. More directly relevant is the **FrameNet project** itself, which you are building upon. FrameNet, as a lexical resource, is a structured representation of Fillmore's frames, but it's not a dynamic computational model for reasoning or concept invention. Our work aims to bridge this gap.
+    
+
+### Lessons Learned from Past Implementations
+
+Based on my research and an analysis of these projects, here are the key lessons and pitfalls to consider for the SOUL framework:
+
+1. **The "Grand Unified Theory" Problem:** Many early attempts to build a "Society of Mind" were overly ambitious, trying to model all of human cognition with a massive, monolithic system of agents and frames. This often led to unmanageable complexity and slow performance.
+    
+    - **Lesson for SOUL:** We should embrace a more modest and targeted approach. Our goal is not to replicate the human mind, but to create a computationally tractable model for a specific set of cognitive processes—meaning representation, common-sense reasoning, and conceptual blending—grounded in cognitive linguistics. The layered architecture (IS -> CSP -> Frames) is a perfect example of this focused approach.
+        
+2. **Lack of Grounding:** Many formal AI systems struggle with the "symbol grounding problem." They have symbols and rules but lack a connection to sensory-motor experience. This is a major limitation that Minsky's frames were meant to solve by linking high-level concepts to low-level perceptual data.
+    
+    - **Lesson for SOUL:** Our foundation on **Image Schemas (IS)** directly addresses this. By making IS primitives the bedrock of our system, we are building a framework that is inherently grounded. The conceptualization of abstract concepts like `Goal` or `Belief` as derived from spatial schemas like `Path` and `Container` is our primary mechanism for avoiding this pitfall.
+        
+3. **Static vs. Dynamic Representation:** Older frame-based systems were often static. Once a frame was defined, it was a fixed structure. Minsky's vision, however, was dynamic, with "agents" constantly activating and deactivating parts of a frame, and "K-lines" forming new connections.
+    
+    - **Lesson for SOUL:** Our use of a **graph database (Neo4j)** and **spreading activation** is the perfect mechanism to implement this dynamic, non-static behavior. Spreading activation naturally models the "calling up" of related concepts (or agents/K-lines in Minsky's terms) in a way that is computationally efficient and cognitively plausible. It allows us to simulate the emergent properties of a "Society of Mind" without having to program countless individual, explicit agents.
+        
+4. **The "Agent" Abstraction:** The term "agent" in "Society of Mind" can be ambiguous. Is it a simple program? A neuron? A concept? Early implementations often struggled with this, creating complex, purpose-built agents that were difficult to scale.
+    
+    - **Lesson for SOUL:** We can simplify this. Our **nodes (concepts)** and **edges (relationships)** in the Neo4j graph can be considered our "agents." A **`MindService`** (as mentioned in the `CLAUDE.md` file) can act as the "coordinator" or "boss-agent" that triggers the spreading activation. The **`K-lines`** are not a separate entity but are the emergent **paths or subgraphs discovered by the spreading activation process**. This gives us the functionality of a dynamic "Society" without the complexity of coding thousands of separate programs. The "nomo/nome" idea can be represented by the stable, re-usable subgraph patterns that emerge from repeated activation of certain concepts.
+        
+
+### Proposed Path Forward for SOUL
+
+Based on these insights, here is how we can refine the implementation of Minsky's ideas within the SOUL framework:
+
+- **Agents as Conceptual Patterns:** Do not implement individual "agents" as separate code objects. Instead, the concepts themselves in the graph are the "agents." A **`Frame`** is an agent, a **`FrameElement`** is an agent. They "activate" other agents (concepts) via spreading activation. The `MindService` is the central orchestrator that initiates this process.
+    
+- **K-lines as Emergent Paths:** The `K-line` is a crucial concept for memory and learning. In our Neo4j graph, a `K-line` is not a static data structure but a **discovered path or subgraph pattern** that frequently co-activates. We can use graph algorithms to detect and even strengthen these frequently used paths over time. For example, if the concept `WALK` and `PATH` and `GOAL` are always activated together in a specific context, the system can "learn" this connection, making it faster to traverse in the future.
+    
+- **Spreading Activation for Commonsense:** Use spreading activation as the primary mechanism for commonsense reasoning. When a user queries for a concept, the system can activate a set of relevant nodes. The spread can be weighted by the type of relationship (e.g., `IS-A` relations spread more strongly than `CAUSES` relations) and by the "salience" of the node, which could be an attribute we add. This would simulate the way humans retrieve and connect relevant information quickly.
+    
+- **Connecting to Modern AI Agents:** We can still connect to modern AI agents (like a sentiment analysis API, or an image recognition model). These external agents can be seen as specialized "senses" or "limbs" of our conceptual system. A visual agent might input data that activates an Image Schema node (`CONTAINER`), which then spreads activation to a related Frame (`ENCLOSING`). This provides a clear link between symbolic (our graph) and sub-symbolic (e.g., neural network) processing, a key goal in modern cognitive AI.
+    
+
+By taking this path, we can build a simple yet powerful computational model that directly implements the spirit of Minsky's ideas while avoiding the complexities that plagued earlier attempts, all while staying true to our foundation in Cognitive Linguistics. This approach transforms Minsky's abstract theory into a practical, graph-based system.
+
+# Agents as conceptual entity and executable code at same time
+
+That's a very important clarification. Your understanding of "agents" as procedural code that executes actions is correct and aligns with common AI practices. The distinction I'm making is a way to bridge Minsky's abstract concept of a "society of agents" with a concrete computational model.
+
+Here's how we can reconcile the two ideas and implement agents as both conceptual nodes in the graph and as procedural code.
+
+---
+
+### Dual Representation of Agents in SOUL
+
+The key is to use a **dual representation** for agents. We can model agents as both conceptual entities and as executable code, allowing us to combine the strengths of both approaches.
+
+1. **Conceptual Representation (The "What"):**
+    
+    - In the Neo4j graph, an agent is represented as a **node**.
+        
+    - This node, let's call it a **`PROCEDURAL_AGENT`** node, is a first-class citizen of our conceptual network.
+        
+    - The `PROCEDURAL_AGENT` node has properties that describe its function, such as its name (`MOVE_CONCEPT_AGENT`), its purpose (`moves concepts in a conceptual space`), and its parameters (`concept_id`, `new_location`).
+        
+    - Crucially, this `PROCEDURAL_AGENT` node is linked to the concepts it operates on (e.g., `MOVE_CONCEPT_AGENT` might be related to the `CONCEPT` node and the `LOCATION` node) and the Image Schemas it's based on (e.g., `PATH` and `CONTAINER`). This makes the agent's function explicit and semantically transparent within our cognitive framework.
+        
+2. **Procedural Implementation (The "How"):**
+    
+    - Separately, we have an actual piece of executable code—a **function, method, or microservice**—that performs the actions.
+        
+    - This procedural code is what you are calling a "method in an Object-Oriented class."
+        
+    - The `PROCEDURAL_AGENT` node in the graph acts as a **pointer or a reference** to this piece of code. It contains an attribute, perhaps `code_reference`, that points to the actual implementation. For example, `code_reference: "MindService::moveConcept"`.
+        
+
+### The Agent's Workflow
+
+This dual representation creates a powerful and flexible workflow:
+
+1. **Triggering an Agent:** A **`MindService`** (our central coordinating agent) receives a request, such as a command to "move the concept `APPLE` to the `FRUIT_REGION` in the `FOOD` domain."
+    
+2. **Activating the Conceptual Agent:** The `MindService` uses spreading activation to find the most relevant `PROCEDURAL_AGENT` node in the graph. The system would follow paths from the `MOVE` concept and the `LOCATION` concept, eventually arriving at the `MOVE_CONCEPT_AGENT` node.
+    
+3. **Executing the Code:** Once the `MOVE_CONCEPT_AGENT` node is identified, the `MindService` reads its `code_reference` property and calls the corresponding procedural code (`MindService::moveConcept`), passing the necessary parameters (`APPLE`, `FRUIT_REGION`, `FOOD`).
+    
+4. **Action and Update:** The procedural code executes the action (updating the `APPLE` node's `LOCATION` property in the graph) and returns the result. This result might, in turn, trigger new conceptual activations or updates in the graph.
+    
+
+### The Benefits of this Approach
+
+- **Semantic Transparency:** By representing agents as nodes, their function and relationships are no longer hidden in a black box of code. The system can reason about its own agents. For example, it can understand that the `MOVE_CONCEPT_AGENT` is a type of `PROCESS` and is related to a `CHANGE` of `STATE`.
+    
+- **Flexibility and Modularity:** We can add new agents (code) and simply create a corresponding node in the graph without re-architecting the entire system. This allows for a clean separation between the conceptual model and the implementation details.
+    
+- **Cognitive Plausibility:** This model reflects how we think. We have abstract concepts of "actions" or "processes" (`MOVE`) that are associated with specific, learned procedures or motor programs. Our SOUL framework can have a conceptual representation of the action, which is then linked to the procedural "code" for its execution.
+    
+
+This hybrid approach allows SOUL to leverage the power of graph-based conceptual reasoning while maintaining the practical necessity of procedural code for executing actions. Your procedural operations are the essential engine, but the agent nodes in the graph are the "blueprints" or "schemas" that define what those engines do and how they relate to the rest of the conceptual world.
+
+# Implementing agents code
+
+That's a sound refinement. Grouping all agent functions into a single `MindService` would create a monolithic, difficult-to-manage class. A more modular and scalable approach is necessary.
+
+I propose a **microservice-oriented architecture** for the procedural agents, which aligns well with modern software design principles and maps elegantly to our dual representation model.
+
+---
+
+### Suggested Implementation of Agent Code
+
+Instead of a single `MindService` class, we can have multiple, specialized services. Each service would be responsible for a cohesive set of related agents. These services would expose a public API that the central `MindService` can call.
+
+Here's a breakdown of this approach:
+
+#### 1. Agent Services and Their Roles
+
+We can group our procedural agents into distinct services based on their function, mirroring the layers of our conceptual framework:
+
+|Service Name|Primary Function|Example Agents (Methods)|
+|---|---|---|
+|`ImageSchemaService`|Manages operations related to primitive Image Schemas and their properties.|`create_path()`, `calculate_distance()`, `check_containment()`|
+|`ConceptualSpaceService`|Handles positioning and manipulation of concepts within conceptual spaces.|`place_concept_in_region()`, `find_closest_neighbor()`, `project_space()`|
+|`FrameService`|Focuses on the dynamic aspects of Frames and Frame Elements.|`instantiate_frame()`, `add_frame_element()`, `resolve_inheritance()`|
+|`CognitiveProcessService`|Orchestrates high-level cognitive processes like spreading activation and blending.|`run_spreading_activation()`, `perform_blending()`|
+|`LanguageService`|Deals with the interface between the conceptual graph and natural language.|`conceptualize_word()`, `generate_sentence_from_frame()`|
+
+#### 2. The Central `MindService`
+
+The `MindService` would not contain the agent code itself but would act as the **orchestrator** and **router**. Its primary responsibilities would be:
+
+- **Receiving Instructions:** It would be the entry point for commands (e.g., from a user interface or an external process).
+    
+- **Agent Discovery:** It uses spreading activation on the graph to find the appropriate `PROCEDURAL_AGENT` node(s) to handle the instruction.
+    
+- **Calling Agent Services:** Once an agent node is identified, the `MindService` looks up its `code_reference` and makes a remote call (or a method call if they are in the same environment) to the relevant service's method.
+    
+- **Result Management:** It receives the output from the agent services and updates the graph accordingly, potentially triggering subsequent agents.
+    
+
+#### 3. Agent Implementation Details
+
+- **Code Reference:** The `code_reference` property on the `PROCEDURAL_AGENT` node in the graph would be a string like `"ImageSchemaService::check_containment"`. This string acts as a clear and explicit link between the conceptual representation and the executable code.
+    
+- **Parameters:** The `MindService` would dynamically pass parameters, which it extracts from the instruction and the current state of the graph, to the agent service method.
+    
+- **Scalability:** This microservice-oriented approach means we can run these services on different servers, scale them independently, and even write them in different programming languages if needed. This is a robust pattern for a system that will grow in complexity.
+    
+
+This design cleanly separates the "what" (the conceptual model in the graph) from the "how" (the procedural code in the services). The agent nodes in our conceptual graph serve as the rich, semantically-grounded directory for a distributed set of specialized functions. This not only makes the system more manageable but also provides a clear, scalable path for future development.
+
+# Implementation plan
+
+Based on our refined design, here is a high-level implementation plan, from the overall architecture down to specific code structures.
+
+---
+
+### 1. High-Level Architecture and Workflow
+
+The system's core workflow will follow a request-response pattern orchestrated by the `MindService`, which now acts as the central router and cognitive process manager.
+
+1. **External Request:** A user or external system sends a request to the `MindService` API (e.g., "Analyze the sentence 'John is walking to the store.'").
+    
+2. **Conceptualization:** The `MindService` uses initial spreading activation on the Neo4j graph, triggered by keywords like "walking" and "store." This process identifies relevant `Frame` nodes (e.g., `WALKING_FRAME`, `COMMERCE_FRAME`), `Image_Schema` nodes (`PATH`, `CONTAINER`), and `PROCEDURAL_AGENT` nodes (`SpreadingActivationService::run_spreading_activation`).
+    
+3. **Agent Orchestration:** The `MindService` initiates a sequence of agent calls based on the conceptualization. For example, it might call:
+    
+    - `LanguageService::parse_sentence()` to break down the sentence.
+        
+    - `FrameService::instantiate_frame()` to create a new `FrameInstance` for the `WALKING_FRAME`.
+        
+    - `ConceptualSpaceService::place_concept_in_region()` to situate the `store` concept.
+        
+4. **Graph Interaction:** Each agent service performs its specific task, primarily by querying and updating the Neo4j graph.
+    
+5. **K-line Emergence:** The execution of a series of agents for a specific task constitutes a "k-line." The `MindService` records this successful path of activation and action, potentially strengthening the connections between the involved nodes in the graph.
+    
+6. **Response Generation:** After the agents complete their tasks, the `MindService` consolidates the results, potentially using a `LanguageService` agent to generate a human-readable response, and returns it to the user.
+    
+
+---
+
+### 2. Implementation of Data Structures in Neo4j
+
+We will use a labeled property graph model in Neo4j. This is where we store the core conceptual network.
+
+- **Nodes:**
+    
+    - **`Concept`**: A generic node for all abstract and concrete ideas (e.g., `WALK`, `GOAL`, `PATH`).
+        
+    - **`Frame`**: A `Concept` node with a specific label for structured knowledge.
+        
+    - **`FrameElement`**: A `Concept` node representing a role within a Frame.
+        
+    - **`FrameInstance`**: A specific instance of a `Frame` in a particular context.
+        
+    - **`FrameElementInstance`**: A specific instance of a `FrameElement` within a `FrameInstance`.
+        
+    - **`ProceduralAgent`**: A `Concept` node that represents an executable agent. It will have properties like `name` and `code_reference`.
+        
+- **Relationships:**
+    
+    - **`IS_A`**: For taxonomic hierarchies (e.g., `ACTION IS_A PROCESS`).
+        
+    - **`HAS_FE`**: Connects a `Frame` to its `FrameElement`s.
+        
+    - **`FE_OF`**: Connects a `FrameInstance` to its `FrameElementInstance`s.
+        
+    - **`PART_OF`**: For compositional relationships.
+        
+    - **`CAUSES`**: For causal relationships.
+        
+    - **`MAPPED_TO`**: A crucial relation for Conceptual Blending, linking concepts across different conceptual spaces.
+        
+    - **`ACTIVATES`**: A dynamic relationship that can be created by spreading activation to record and reinforce k-lines.
+        
+
+---
+
+### 3. Agent Services and PHP Class Definitions
+
+Instead of one large `MindService` class, we will define separate, focused services. These can be PHP classes or even separate microservices.
+
+PHP
+
+```
+// Central Orchestrator
+class MindService {
+    public function handleRequest(string $request_string): array {
+        // Step 1: Use spreading activation to find relevant concepts and agents
+        $initial_activation = $this->graphService->runSpreadingActivation($request_string);
+
+        // Step 2: Identify and call procedural agents
+        $language_agent_node = $this->graphService->findProceduralAgent("LanguageService::parse_sentence");
+        $parsed_data = $this->languageService->parseSentence($request_string);
+
+        // Step 3: Call other agents based on parsed data...
+        $frame_agent_node = $this->graphService->findProceduralAgent("FrameService::instantiate_frame");
+        $frame_instance = $this->frameService->instantiateFrame($parsed_data['frame']);
+
+        // Step 4: Record the path of activation as a k-line
+        $this->graphService->recordKLine($initial_activation, $frame_agent_node, ...);
+
+        return $frame_instance;
+    }
+}
+
+// Example Agent Service
+class FrameService {
+    private Neo4jClient $client;
+
+    public function __construct(Neo4jClient $client) {
+        $this->client = $client;
+    }
+
+    // This method is called by the MindService
+    public function instantiateFrame(array $frame_data): array {
+        // Logic to create FrameInstance and FrameElementInstances in the Neo4j graph
+        $query = "CREATE (fi:FrameInstance {id: apoc.create.uuid(), name: $frame_data['name']})";
+        $this->client->run($query);
+        // ... more graph operations
+        return ['status' => 'success', 'instance_id' => $new_id];
+    }
+}
+```
+
+---
+
+### 4. Handling Frames as Concepts
+
+We do not need dedicated PHP classes for every `Frame`, `FrameElement`, or `FrameInstance`. The graph database is the single source of truth for these.
+
+- During a processing phase, the `MindService` or an agent service will fetch the required data from the graph and represent it as a generic data structure (e.g., an array or a `stdClass` in PHP).
+    
+- For example, when `FrameService::instantiateFrame()` is called, it receives an associative array of frame data, performs the necessary graph operations, and returns an identifier. There is no need for a `FrameInstance` class in PHP that corresponds to the graph node. This keeps the code lightweight and focused on graph interaction.
+
+
+# YAML files
+
+We need to populate the graph database with concepts. To make this task easier while we don't have a UI to create concepts, the idea is to use YAML files to this task. YAML files are human readable and easily parsed.
+
+The revised YAML structure should be a clean, declarative representation of the conceptual nodes and relationships that will be loaded into the Neo4j graph. The goal is to make it a direct, human-readable blueprint for graph creation.
+
+Let's use the `BUYING` frame as an example.
+
+YAML
+
+```
+# FILE: Frames/BUYING.yaml
+
+type: Frame
+name: BUYING
+description: A COMMERCIAL_TRANSACTION where a BUYER acquires a GOOD from a SELLER, paying a PRICE.
+inherits_from:
+  - COMMERCIAL_TRANSACTION
+  - TRANSFER
+
+relations:
+  # Define FrameElements and their connections to the frame and other concepts
+  - target_node:
+      type: FrameElement
+      name: BUYER
+      description: The person or entity who pays and receives the good.
+      allowed_concepts: [PERSON, ENTITY]
+    relations_to_parent:
+      - name: HAS_FE
+        type: is_part_of_frame
+      - name: IS_A
+        type: inheritance
+        from_frame: COMMERCIAL_TRANSACTION
+        from_element: BUYER
+
+  - target_node:
+      type: FrameElement
+      name: SELLER
+      description: The person or entity who receives the payment and gives the good.
+      allowed_concepts: [PERSON, ENTITY]
+    relations_to_parent:
+      - name: HAS_FE
+        type: is_part_of_frame
+      - name: IS_A
+        type: inheritance
+        from_frame: COMMERCIAL_TRANSACTION
+        from_element: SELLER
+
+  - target_node:
+      type: FrameElement
+      name: GOOD
+      description: The object or service that is transferred.
+      allowed_concepts: [OBJECT, SERVICE]
+    relations_to_parent:
+      - name: HAS_FE
+        type: is_part_of_frame
+      - name: IS_A
+        type: inheritance
+        from_frame: TRANSFER
+        from_element: OBJECT_TO_TRANSFER
+
+  - target_node:
+      type: FrameElement
+      name: PRICE
+      description: The monetary value transferred for the good.
+      allowed_concepts: [MONEY]
+    relations_to_parent:
+      - name: HAS_FE
+        type: is_part_of_frame
+      - name: IS_A
+        type: inheritance
+        from_frame: COMMERCIAL_TRANSACTION
+        from_element: PRICE
+```
+
+---
+
+### Explanation
+
+1. **Explicit Node and Relationship Definitions:** The `relations` section now explicitly defines the nodes to be created (`target_node`) and their relationships (`relations_to_parent`). This maps directly to the Neo4j graph model.
+    
+2. **Use of `type`:** We introduce a `type` key to distinguish between different kinds of conceptual nodes (`Frame`, `FrameElement`, `ImageSchema`, `ProceduralAgent`). This is crucial for the graph loader to apply the correct label and properties.
+    
+3. **Flexible `relations_to_parent`:** This new structure allows us to define not just a single relationship but multiple relationships for a node, including inheritance and structural connections. This is more powerful and flexible than a simple `InheritsFrom` list.
+    
+4. **`allowed_concepts`:** reflecting that a frame element can be filled by multiple types of concepts.
+    
+5. **No PHP Classes:** This structure confirms that we do not need to create corresponding PHP classes for each `Frame`. Instead, the `MindService`'s "Graph Loader" component will read these files and use the `Neo4jClient` to create the nodes and relationships directly.
+    
+
+By adopting this revised YAML structure, we create a clear and manageable path for populating our graph database, ensuring a clean separation between the conceptual knowledge model and the procedural agent code.
+

@@ -10,26 +10,26 @@ Implementar um cognitive framework, implementando ideias e teorias de diversos c
 - Conceptual Blending
 
 ## Frames a agentes
-A implementação de frames e agentes é baseada na proposta de Minsk. No contexto do framework Soul, um frame é uma estrutura que aglutina dados e processamento, através de classes OO. Agentes - que implementam o aspecto dinâmico do framework - são representados por métodos dos frames.
+A implementação de frames e agentes é baseada na proposta de Minsk. No contexto do framework Soul, um frame é uma estrutura de dados para representar aspectos estáticos dos conceitos, enquanto agentes que implementam o aspecto dinâmico.
 
 ### Frames
-A frame can be conceptualized as a network of nodes and relations, structured to organize knowledge efficiently. Na Soul, um frame é composto por "elementos de frame".
+A frame can be conceptualized as a network of nodes and relations, structured to organize knowledge efficiently. Na Soul, a ideia de slots/terminals é representada por "elementos de frame" (frame elements).
     
-- **Frame Elements and their Conditions:** These are dynamic "slots" (or terminal) that require specific instances or data from the current context to be filled. Each terminal is capable of specifying conditions that its assigned values must satisfy. These conditions can range from simple markers, such as requiring an assignment to be a person, an object of a certain value, or a pointer to a specific sub-frame, to more complex stipulations defining relationships among items assigned to multiple terminals.2 Often, assignments to these terminals are themselves smaller "sub-frames".2
+- **Frame Elements and their Conditions:** These are dynamic "slots" (or terminal) that require specific instances or data from the current context to be filled. Each terminal is capable of specifying conditions that its assigned values must satisfy. These conditions can range from simple markers, such as requiring an assignment to be a person, an object of a certain value, or a pointer to a specific sub-frame, to more complex stipulations defining relationships among items assigned to multiple terminals. Often, assignments to these terminals are themselves smaller "sub-frames".
     
-- **Default Assignments and their Role in Reasoning:** A powerful feature of frames is the inclusion of "default" assignments that pre-fill frame elements. These defaults encapsulate general information, represent the most probable cases, and facilitate useful generalizations.1 Critically, these defaults are loosely bound and can be readily overridden by new information that more accurately reflects the current situation. This flexibility allows them to function as "variables" or "special cases for reasoning by example," often circumventing the need for complex logical quantifiers.2 This mechanism enables rapid, presumptive understanding, significantly reducing the computational burden of exhaustive logical deduction.
+- **Default Assignments and their Role in Reasoning:** A powerful feature of frames is the inclusion of "default" assignments that pre-fill frame elements. These defaults encapsulate general information, represent the most probable cases, and facilitate useful generalizations. Critically, these defaults are loosely bound and can be readily overridden by new information that more accurately reflects the current situation. This flexibility allows them to function as "variables" or "special cases for reasoning by example," often circumventing the need for complex logical quantifiers. This mechanism enables rapid, presumptive understanding, significantly reducing the computational burden of exhaustive logical deduction.
     
-Frames are not isolated entities; they are organized into interconnected "frame-systems", estabelecendo uma rede (FrameNet). Within these systems, the effects of important actions are mirrored by "transformations" between frames. These transformations serve multiple computational purposes: they facilitate economical calculations, represent shifts in emphasis and attention, and contribute to the effectiveness of "imagery".1 
+Frames are not isolated entities; they are organized into interconnected "frame-systems", e o conjunto de frame-systems estabelece uma rede (FrameNet). Within these systems, the effects of important actions are mirrored by "transformations" between frames. These transformations serve multiple computational purposes: they facilitate economical calculations, represent shifts in emphasis and attention, and contribute to the effectiveness of "imagery".
 A particularly critical design choice is that different frames within a system can share the same terminals. This shared access is instrumental in coordinating information gathered from diverse viewpoints. For example, in visual scene analysis, various frames within a system might describe the same scene from different perspectives, with transformations representing the effects of moving from one vantage point to another.
 
 ### Agents
-Minsky's "Society of Mind" theory offers a radical departure from traditional views of intelligence, conceptualizing the mind not as a singular, unified entity, but as a "society" composed of numerous smaller, simpler, and often "mindless" agents.11 These agents are defined as basic processes, each performing specific tasks such as recognizing patterns, recalling memories, or managing emotions.5 Higher-level cognitive functions emerge from the complex collaboration of these agents, which collectively generate the various layers of mental activity observed in thoughts and behaviors.6 A key tenet is the absence of a central "master" agent; instead, different agents interact through collaboration, competition, and even conflict.6
+Minsky's "Society of Mind" theory offers a radical departure from traditional views of intelligence, conceptualizing the mind not as a singular, unified entity, but as a "society" composed of numerous smaller, simpler, and often "mindless" agents. These agents are defined as basic processes, each performing specific tasks such as recognizing patterns, recalling memories, or managing emotions. Higher-level cognitive functions emerge from the complex collaboration of these agents, which collectively generate the various layers of mental activity observed in thoughts and behaviors. A key tenet is the absence of a central "master" agent; instead, different agents interact through **collaboration**, **competition**, and even **conflict**.
 
-No framework SOUL os agentes são implementados como métodos internos aos frames. Estes métodos são pré-programados e podem tanto modificar as características do frame a que pertencem, quanto enviar mensagens para agentes de outros frames. Assim, como a "Society of Mind", agents do not operate in isolation. They actively utilize frames to interpret new information, fitting it into pre-existing knowledge templates.5 Frames thus serve as mental schemas that guide how agents process sensory input and conceptualize situations.6
+No framework SOUL os agentes são implementados como métodos associados a classes de serviços. Estes métodos são pré-programados e podem tanto modificar as características do frame a que pertencem, quanto enviar mensagens para outros agentes. Assim, como a "Society of Mind", agents do not operate in isolation. They actively utilize frames to interpret new information, fitting it into pre-existing knowledge templates.Frames thus serve as **mental schemas** that guide how agents process sensory input and conceptualize situations.
 
 ## Conceptual space
 
-All concepts in framework Soul are situated in a **CONCEPTUAL_SPACE**. The **CONCEPTUAL_SPACE** encompasses all types of spaces (for example, physical space, topological space, temporal space, etc.). The `CONCEPTUAL_SPACE` can be generated by a lexical item, a sentence, a paragraph, or a full text. It is itself a **REGION** that contains other **REGION**s. Concepts are represented by a **REGION** in the **CONCEPTUAL_SPACE**. **REGION**s can be conceptualized as:
+All concepts in framework Soul are situated in a **CONCEPTUAL_SPACE**. The **CONCEPTUAL_SPACE** encompasses all types of spaces (for example, physical space, topological space, temporal space, etc.). The `CONCEPTUAL_SPACE` can be generated by an image, a lexical item, a sentence, a paragraph, or a full text. It is itself a **REGION** that contains other **REGION**s. Concepts are represented by a **REGION** in the **CONCEPTUAL_SPACE**. **REGION**s can be conceptualized as:
 
 - 0 Dimension: **POINT** - um conceito conceptualizado como POINT não pode ser composto por outros conceitos, e é considerado atômico, ou seja, indivisível. Ele pode, porém, estar relacionado a outros conceitos (através dos seus Elementos de Frame).
     
@@ -156,7 +156,7 @@ We are working with **CONCEPTUAL_SPACE**s. Spatial operations situate a concept 
 
 ### **Positioning Operations**
 
-As seen, a DIMENSION is associated with the AXIS schema, indicating that concepts are related according to some criterion. The DISTANCE between concepts shows how similar they are to each other, according to the defined criterion. To avoid greater complexity, spatial operations are defined using an analogy with physical space. Furthermore, as in ISL, a naive egocentric view is assumed, with a fixed observer at an "origin" or "reference point" (prototypically the central position of the axis).
+As seen, a DIMENSION is associated with the AXIS schema, indicating that concepts are related according to some criterion. The **DISTANCE** between concepts shows how similar they are to each other, according to the defined criterion. To avoid greater complexity, spatial operations are defined using an analogy with physical space. Furthermore, as in ISL, a naive egocentric view is assumed, with a fixed observer at an "origin" or "reference point" (prototypically the central position of the axis).
 
 These operations are understood in two ways: as a "get" operation, in which a value is obtained, or as a "set" operation, in which a value is defined:
 
@@ -168,9 +168,9 @@ These operations are understood in two ways: as a "get" operation, in which a va
     
 - **BEHIND(X)** positions concept X behind the **CENTER** (on an **AXIS-Z**)
     
-- IN_FRONT_OF(X) positions concept X in front of the CENTER (on an AXIS-Z)
+- **IN_FRONT_OF**(X) positions concept X in front of the **CENTER** (on an AXIS-Z)
     
-    These operations are performed within the context of a REGION or structural schema. For example, if T is a TIME_AXIS, the operation T.IN_FRONT_OF(X) is positioning X in the future relative to the origin and returning the position where X was placed. If we have T.IN_FRONT_OF(X).IN_FRONT_OF(Y), concept Y is being placed in the future relative to concept X.
+These operations are performed within the context of a REGION or structural schema. For example, if T is a TIME_AXIS, the operation T.IN_FRONT_OF(X) is positioning X in the future relative to the origin and returning the position where X was placed. If we have T.IN_FRONT_OF(X).IN_FRONT_OF(Y), concept Y is being placed in the future relative to concept X.
     
 
 ### **Movement Operations**
@@ -229,9 +229,9 @@ Some states:
     
 - **QUALITY_VALUE**: A **QUALITY_VALUE** is a region defined within a **QUALITY_DIMENSION**.
     
-- **ATRIBUTE_VALUE(X,A,V)**: **ENTITY** X has **VALUE** V for **ATTRIBUTE** A.
+- **ATTRIBUTE_VALUE(X,A,V)**: **ENTITY** X has **VALUE** V for **ATTRIBUTE** A.
     
-- **POSESSION(X,Y)**: A state that describes the relation between two **ENTITY**s (X and Y) in which one can be conceptualized as being the possession or property of the other. This **RELATION** is static and does not involve any **TRANSFER**, and can be persistent or temporary.
+- **POSSESSION(X,Y)**: A state that describes the relation between two **ENTITY**s (X and Y) in which one can be conceptualized as being the possession or property of the other. This **RELATION** is static and does not involve any **TRANSFER**, and can be persistent or temporary.
     
 - **CONFIGURATION(X,Y)**: A state in which the **RELATION** between two (or more) entities that, together, form a new concept is profiled. Generally associated with the configuration of an atomic entity in relation to a compound entity.
     
@@ -244,7 +244,7 @@ Some states:
 
 # **Image Schemas**
 
-**Image Schemas** are a specific type of concept related to embodied, sensorimotor experiences. They are not the only type of concept in the framework, but a fundamental one, with others being considered primitive or derived. The following are some key schemas:
+**Image Schemas** are a specific type of concept related to embodied, sensorimotor experiences. They are a fundamental type of concept in the framework. The following are some key schemas:
 
 - **CONTACT(X,Y)**: associated with the relation **MEET(X,Y)**.
     
@@ -269,7 +269,7 @@ Some states:
     
 - **MIND**: a central **ENTITY** for **CSP**, representing the mind of a **PERSON**. In this framework, `MIND` represents the conceptualizer—the person who is interpreting the input and building the `CONCEPTUAL_SPACE`.
     
-- **EMOTION**: a phenomenologically experienced feeling.
+- **EMOTION**: a phenomenologically experienced feeling. Associated to the concept **FORCE**.
     
 
 # **General Structure of Domains**
